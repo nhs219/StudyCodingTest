@@ -1,58 +1,63 @@
-package example03;
+package example;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.StringTokenizer;
 
-public class q23 {
-
+public class q25 {
+    static boolean visited[];
     static ArrayList<Integer>[] A;
-    static boolean[] visited;
+    static boolean arrive;
+    
     public static void main(String[] args) throws IOException {
+        arrive = false;
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
         int n = Integer.parseInt(st.nextToken());
         int m = Integer.parseInt(st.nextToken());
-
-        A = new ArrayList[n+1];
-        visited = new boolean[n+1];
-
-        for(int i=1; i<n+1; i++) {
+        A = new ArrayList[n];
+        visited = new boolean[n];
+        for(int i=0; i<n; i++) {
             A[i] = new ArrayList<Integer>();
         }
 
+        st = new StringTokenizer(br.readLine());
         for(int i=0; i<m; i++) {
-            st = new StringTokenizer(br.readLine());
             int s = Integer.parseInt(st.nextToken());
             int e = Integer.parseInt(st.nextToken());
-
             A[s].add(e);
             A[e].add(s);
         }
 
-        int count = 0;
-        for(int i=1; i<n+1; i++) {
-            if(!visited[i]) {
-                count++;
-                DFS(i);
+        for(int i=0; i<n; i++) {
+            DFS(i,1);
+            if(arrive) {
+                break;
             }
-        }
 
-        System.out.println(count);
+        }
+        if (arrive) {
+            System.out.println("1");
+        } else {
+            System.out.println("0");
+        }
     }
 
-    static void DFS(int v) {
-        if(visited[v]) {
+    public static void DFS(int now, int depth) {
+        if (depth == 5 || arrive) {
+            arrive = true;
             return;
         }
 
-        visited[v] = true;
-        for(int i : A[v]) {
-            if (visited[i] == false) {
-                DFS(i);
+        visited[now] = true;
+        for (int i : A[now]) {
+            if(!visited[i]) {
+                DFS(i, depth + 1);
             }
         }
+        visited[now] = false;
     }
 }
