@@ -8,7 +8,6 @@ import java.util.StringTokenizer;
 
 public class q29 {
     private static int[] A;
-    private static int[] num;
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
@@ -22,7 +21,6 @@ public class q29 {
 
         int m = Integer.parseInt(br.readLine());
         st = new StringTokenizer(br.readLine());
-        num = new int[m];
         for(int i=0; i<m; i++) {
             findNum(Integer.parseInt(st.nextToken()), 0, n-1);
         }
