@@ -22,7 +22,7 @@ public class q32 {
         for(int i=n-1; i>=0; i--) {
             int money = A[i];
 
-            if(money<k) {
+            if(money<=k) {
                 count = count + k/money;
                 k = k%money;
             }
