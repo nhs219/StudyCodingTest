@@ -1,15 +1,12 @@
 import java.util.Arrays;
 
-public class quickSort {
+public class quickSortEx {
+
     public static void main(String[] args) {
         int[] arr = {7,5,6,3,8,1,9,2,4};
         System.out.println(Arrays.toString(arr));
-        quickSort(arr);
-        System.out.println(Arrays.toString(arr));
-    }
-
-    private static void quickSort(int[] arr) {
         quickSort(arr, 0, arr.length-1);
+        System.out.println(Arrays.toString(arr));
     }
 
     private static void quickSort(int[] arr, int start, int end) {
