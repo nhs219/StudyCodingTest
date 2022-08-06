@@ -1,28 +1,24 @@
 package example;
 
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class q37 {
+    private static HashMap<Integer, Integer> map;
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
-        int n = sc.nextInt();
         int m = sc.nextInt();
+        int n = sc.nextInt();
 
-        Queue<Integer> queue = new LinkedList<>();
+        int[] array = new int[m-n+1];
 
-        for(int i = n ; i <= m ; i++) {
-            queue.add(i);
+    }
+
+    private static void remove(int key, int num) {
+        if(map.get(key) % num == 0) {
+            map.remove(key);
         }
-
-        for (Integer num : queue) {
-            if(num % 2 == 0) {
-                queue.remove();
-            }
-        }
-
-        System.out.println();
     }
 }
