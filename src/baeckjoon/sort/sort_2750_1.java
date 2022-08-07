@@ -3,7 +3,6 @@ package baeckjoon.sort;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Arrays;
 
 public class sort_2750_1 {
 
@@ -23,40 +22,45 @@ public class sort_2750_1 {
             array[i] = Integer.parseInt(br.readLine());
         }
 
-        quickSort(array[0], 1, n-1);
+        quickSort(0, n-1);
 
+        for(int i : array) {
+            System.out.println(i);
+        }
+
+        br.close();
     }
 
-    private static void quickSort(int pivot, int low, int high) {
+    private static void quickSort(int start, int end) {
+        int part = partition(start, end);
+        if(start < part-1) {
+            quickSort(start, part-1);
+        }
 
-        while(low < high) {
-            if(array[low] < pivot) {
-                low++;
-            } else {
-                break;
+        if(end > part) {
+            quickSort(part, end);
+        }
+    }
+
+    private static int partition(int start, int end) {
+        int pivot = array[(start + end) /2];
+        while(start <= end) {
+            while(array[start] < pivot) start++;
+            while(array[end] > pivot) end--;
+            if(start <= end) {
+                swap(start, end);
+                start++;
+                end--;
             }
         }
 
-        while(low < high) {
-            if(array[high] > pivot) {
-                high--;
-            } else {
-                break;
-            }
-        }
-
-        int temp = array[low];
-        array[low] = array[high];
-        array[high] = temp;
-
-        System.out.println(Arrays.toString(array));
-        
+        return start;
     }
 
-    /**
-     * int temp = array[low];
-        array[low] = pivot;
-        pivot = temp;
-     */
+    private static void swap(int start, int end) {
+        int temp = array[start];
+        array[start] = array[end];
+        array[end] = temp;
+    }
 
 }
